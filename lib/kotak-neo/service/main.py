@@ -83,6 +83,11 @@ def login_to_kotak():
     ucc = os.getenv("KOTAK_UCC")
     mpin = os.getenv("KOTAK_MPIN")
     
+    if mobile:
+        mobile = mobile.strip()
+        if len(mobile) == 10 and mobile.isdigit():
+            mobile = f"+91{mobile}"
+            
     if not all([consumer_key, mobile, ucc, mpin]):
         raise ValueError("Missing Kotak Neo credentials (KOTAK_CONSUMER_KEY, KOTAK_MOBILE, KOTAK_UCC, KOTAK_MPIN) in env.")
 
